@@ -7,18 +7,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import com.cursomc.services.exception.ObjectNotFoundException;
+import com.cursomc.services.exceptions.ObjectNotFoundException;
 
 @ControllerAdvice
 public class ResourceExceptionHandler {
 	
 	@ExceptionHandler(ObjectNotFoundException.class)
-	public ResponseEntity<StandardError> objectNotFound(ObjectNotFoundException e, HttpServletRequest request){
+	public ResponseEntity<StandardError> objectNotFound(ObjectNotFoundException e, HttpServletRequest request) {
 		
-		StandardError err = new StandardError
-				(HttpStatus.NOT_FOUND.value(), e.getMessage(), System.currentTimeMillis());
+		StandardError err = new StandardError(HttpStatus.NOT_FOUND.value(), e.getMessage(), System.currentTimeMillis());
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err);
-		
 	}
-	
 }

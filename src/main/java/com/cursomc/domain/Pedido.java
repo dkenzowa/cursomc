@@ -22,7 +22,7 @@ public class Pedido implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
 	@JsonFormat(pattern="dd/MM/yyyy HH:mm")
@@ -30,7 +30,7 @@ public class Pedido implements Serializable {
 	
 	@OneToOne(cascade=CascadeType.ALL, mappedBy="pedido")
 	private Pagamento pagamento;
-	
+
 	@ManyToOne
 	@JoinColumn(name="cliente_id")
 	private Cliente cliente;
@@ -100,7 +100,7 @@ public class Pedido implements Serializable {
 	public void setItens(Set<ItemPedido> itens) {
 		this.itens = itens;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -125,5 +125,6 @@ public class Pedido implements Serializable {
 			return false;
 		return true;
 	}
+	
 	
 }
